@@ -1,0 +1,104 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class CounsellorLogin extends BasePage{
+
+    public CounsellorLogin(WebDriver driver) {
+        super(driver);
+    }
+
+     @FindBy(xpath = "//input[@name='user_email']")
+    WebElement Email;
+     @FindBy(xpath = "//input[@name='user_pswrd']")
+    WebElement Password;
+
+     @FindBy(xpath = "//button[text()=\"Login\"]")
+    WebElement LoginButton;
+
+     @FindBy(xpath = "//select[@name='designation_id']")
+     WebElement SelectProfession;
+
+     @FindBy(xpath = "//option[contains(text(), 'CBT Therapist')]")
+     WebElement SelectCBT;
+
+     @FindBy(xpath = "//select[@name='gov_id']")
+     WebElement SelectGovtId;
+
+     @FindBy(xpath = "//option[contains(text(), 'NCS')]")
+     WebElement SelectNCS;
+
+     @FindBy(xpath = "(//input[@class='select2-search__field'])[1]")
+     WebElement WorkWith;
+
+     @FindBy(xpath = "//option[@value='Teenagers']")
+     WebElement Teenagers;
+     @FindBy(xpath = "//option[@value='Females']")
+     WebElement Females;
+
+     @FindBy(xpath = "(//input[@type='file'])[2]")
+     WebElement GoverningId;
+
+     @FindBy(xpath = "(//input[@type='file'])[5]")
+     WebElement ProfilePicture;
+
+    @FindBy(xpath = "(//span[@role='combobox'])[2]")
+    WebElement ConcernArea;
+
+
+     @FindBy(xpath = "(//span[@role='combobox'])[3]")
+     WebElement Consultfor;
+     @FindBy(xpath = "//li[contains(@title, 'Individual')]")
+     WebElement IndiOption;
+     @FindBy(xpath = "//input[@name='certifications']")
+     WebElement UploadCertificate;
+
+
+@FindBy(css = "iframe.cke_wysiwyg_frame")
+WebElement editorbody;
+
+     @FindBy(xpath = "(//button[text()='Submit'])[1]")
+     WebElement SubmitButton;
+
+
+
+
+
+
+
+    public void loginCounsellor(String email, String password) {
+        waitForElementToBeClickable(driver, Email, 10);
+        Email.sendKeys(email);
+        Password.sendKeys(password);
+        LoginButton.click();
+        SelectProfession.click();
+        SelectCBT.click();
+        SelectGovtId.click();
+        SelectNCS.click();
+        WorkWith.click();
+        Teenagers.click();
+        Females.click();
+
+
+
+        UploadCertificate.sendKeys("C:\\Users\\MIPL\\Pictures\\dubai mall.jpg");
+        GoverningId.sendKeys("C:\\Users\\MIPL\\Pictures\\ganesha candle.jpg");
+
+        ProfilePicture.sendKeys("C:\\Users\\MIPL\\Pictures\\dummy-profile.png");
+        scrollByPixels(0,10);
+        driver.switchTo().frame(0);
+        editorbody.sendKeys("Hello Test");
+        driver.switchTo().defaultContent();
+
+
+
+        SubmitButton.click();
+
+
+
+     }
+
+}
